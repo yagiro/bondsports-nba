@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux'
+import { styled } from 'styled-components'
+
 import './App.css';
+import PlayersList from './comps/playersList/PlayersList'
+import { store } from './state/store'
+import FavoritePlayers from './comps/favoritePlayers/FavoritePlayers'
+
+const MainContainer = styled.div`
+  flex-wrap: wrap;
+  max-width: 1024px;
+  align-items: flex-start;
+  width: calc(80%);
+  padding: 50px;
+  padding-top: 10px;
+  justify-content: space-around;
+  > * {
+    flex-grow: 1;
+  }
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={ store }>
+      <div className="flx flx-cntr flx-col gap-md">
+        <div className="top-title">NBA PLAYERS</div>
+        <MainContainer className="flx flx-row gap-md">
+          <PlayersList/>
+          <FavoritePlayers/>
+        </MainContainer>
+      </div>
+    </Provider>
+  )
 }
 
 export default App;
